@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct DateContainer {
+struct DateContainer : Identifiable {
 
+    let id = UUID()
     var isFilled : Bool
     var dayOfWeek : DayOfWeek?
     var dayOfMonth : Int?

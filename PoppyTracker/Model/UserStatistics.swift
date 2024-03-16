@@ -10,8 +10,8 @@ import Foundation
 @Observable
 class UserStatistics {
 
-    var usualCycle : Int = 28
+    var usualCycleLength : Int = 28
     var usualLength : Int = 5
-    var lastFirstDayofPeriod : Date = Date()
+    var lastFirstDayOfPeriod : Date = Date()
 
 }

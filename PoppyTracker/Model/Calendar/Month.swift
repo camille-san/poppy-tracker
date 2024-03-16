@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Month: Int {
+enum Month: Int, CaseIterable {
     case january = 1
     case february = 2
     case march = 3

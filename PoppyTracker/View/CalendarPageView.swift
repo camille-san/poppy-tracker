@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarPageView: View {
 
-    @State private var month = 2
+    @State private var month = 11
     @State private var year = 1989
 
     let columns = [
@@ -24,6 +24,12 @@ struct CalendarPageView: View {
 
     var body: some View {
         VStack {
+            Picker(selection: $month, label: Text("Picker")) {
+                ForEach(Month.allCases, id: \.monthIndex) { month in
+                    Text("\(month.monthIndex)").tag(month.monthIndex)
+                }
+            }
+            .pickerStyle(.segmented)
             Text("Month: \(month)")
             LazyVGrid(columns: columns, spacing: 20) {
                 Text("L")
@@ -35,9 +41,8 @@ struct CalendarPageView: View {
                 Text("D")
             }
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(getDays(month: month, year: year), id: \.date) { day in
+                ForEach(getDays(month: month, year: year)) { day in
                     CalendarDayView(date: day)
-//                        .environment(ModelData())
                 }
             }
             Spacer()

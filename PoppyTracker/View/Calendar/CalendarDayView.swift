@@ -18,6 +18,8 @@ struct CalendarDayView: View {
     var date : DateContainer
     
     func onClickDate() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.prepare()
         withAnimation(.easeInOut(duration: 0.2)) {
             self.scale = 1.25
         }
@@ -36,6 +38,7 @@ struct CalendarDayView: View {
         } else {
             modelData.selectedDates.append(unwrappedDate)
         }
+        generator.impactOccurred()
     }
     
     var body: some View {

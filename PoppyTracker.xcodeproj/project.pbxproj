@@ -7,18 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		915543692BA628FC006C6D56 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915543682BA628FC006C6D56 /* UserView.swift */; };
 		91AC636A2BA4FDC8003124C0 /* PoppyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC63692BA4FDC8003124C0 /* PoppyTrackerApp.swift */; };
 		91AC636C2BA4FDC8003124C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC636B2BA4FDC8003124C0 /* ContentView.swift */; };
 		91AC636E2BA4FDC9003124C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91AC636D2BA4FDC9003124C0 /* Assets.xcassets */; };
 		91AC63712BA4FDC9003124C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91AC63702BA4FDC9003124C0 /* Preview Assets.xcassets */; };
+		91AC63842BA5A467003124C0 /* CalendarPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC63832BA5A467003124C0 /* CalendarPageView.swift */; };
+		91AC638A2BA5A9D2003124C0 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC63892BA5A9D2003124C0 /* CalendarDayView.swift */; };
+		91AC638C2BA5B3A7003124C0 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC638B2BA5B3A7003124C0 /* DateUtils.swift */; };
+		91AC638F2BA5B6AC003124C0 /* DateContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC638E2BA5B6AC003124C0 /* DateContainer.swift */; };
+		91AC63912BA5B7A7003124C0 /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC63902BA5B7A7003124C0 /* DayOfWeek.swift */; };
+		91AC63932BA5B7FA003124C0 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC63922BA5B7FA003124C0 /* Month.swift */; };
+		91AC63962BA5CD4C003124C0 /* UserStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC63952BA5CD4C003124C0 /* UserStatistics.swift */; };
+		91AC63982BA5D0FF003124C0 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AC63972BA5D0FF003124C0 /* ModelData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		915543682BA628FC006C6D56 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		91AC63662BA4FDC8003124C0 /* PoppyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoppyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91AC63692BA4FDC8003124C0 /* PoppyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoppyTrackerApp.swift; sourceTree = "<group>"; };
 		91AC636B2BA4FDC8003124C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		91AC636D2BA4FDC9003124C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91AC63702BA4FDC9003124C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		91AC63832BA5A467003124C0 /* CalendarPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageView.swift; sourceTree = "<group>"; };
+		91AC63892BA5A9D2003124C0 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		91AC638B2BA5B3A7003124C0 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		91AC638E2BA5B6AC003124C0 /* DateContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateContainer.swift; sourceTree = "<group>"; };
+		91AC63902BA5B7A7003124C0 /* DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
+		91AC63922BA5B7FA003124C0 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
+		91AC63952BA5CD4C003124C0 /* UserStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatistics.swift; sourceTree = "<group>"; };
+		91AC63972BA5D0FF003124C0 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				91AC63692BA4FDC8003124C0 /* PoppyTrackerApp.swift */,
-				91AC636B2BA4FDC8003124C0 /* ContentView.swift */,
+				91AC63872BA5A9B0003124C0 /* View */,
+				91AC638D2BA5B692003124C0 /* Model */,
 				91AC636D2BA4FDC9003124C0 /* Assets.xcassets */,
 				91AC636F2BA4FDC9003124C0 /* Preview Content */,
 			);
@@ -65,6 +84,46 @@
 				91AC63702BA4FDC9003124C0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		91AC63872BA5A9B0003124C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				91AC636B2BA4FDC8003124C0 /* ContentView.swift */,
+				91AC63832BA5A467003124C0 /* CalendarPageView.swift */,
+				915543682BA628FC006C6D56 /* UserView.swift */,
+				91AC63882BA5A9BC003124C0 /* Calendar */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		91AC63882BA5A9BC003124C0 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				91AC63892BA5A9D2003124C0 /* CalendarDayView.swift */,
+				91AC638B2BA5B3A7003124C0 /* DateUtils.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		91AC638D2BA5B692003124C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				91AC63942BA5CD29003124C0 /* Calendar */,
+				91AC63952BA5CD4C003124C0 /* UserStatistics.swift */,
+				91AC63972BA5D0FF003124C0 /* ModelData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		91AC63942BA5CD29003124C0 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				91AC638E2BA5B6AC003124C0 /* DateContainer.swift */,
+				91AC63902BA5B7A7003124C0 /* DayOfWeek.swift */,
+				91AC63922BA5B7FA003124C0 /* Month.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +196,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				915543692BA628FC006C6D56 /* UserView.swift in Sources */,
+				91AC63842BA5A467003124C0 /* CalendarPageView.swift in Sources */,
 				91AC636C2BA4FDC8003124C0 /* ContentView.swift in Sources */,
+				91AC638C2BA5B3A7003124C0 /* DateUtils.swift in Sources */,
+				91AC63912BA5B7A7003124C0 /* DayOfWeek.swift in Sources */,
+				91AC63932BA5B7FA003124C0 /* Month.swift in Sources */,
+				91AC63962BA5CD4C003124C0 /* UserStatistics.swift in Sources */,
+				91AC638F2BA5B6AC003124C0 /* DateContainer.swift in Sources */,
+				91AC63982BA5D0FF003124C0 /* ModelData.swift in Sources */,
 				91AC636A2BA4FDC8003124C0 /* PoppyTrackerApp.swift in Sources */,
+				91AC638A2BA5A9D2003124C0 /* CalendarDayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,11 +343,14 @@
 				DEVELOPMENT_TEAM = Q4C4Y6CJ8F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PoppyTracker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Poppy Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,11 +375,14 @@
 				DEVELOPMENT_TEAM = Q4C4Y6CJ8F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PoppyTracker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Poppy Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

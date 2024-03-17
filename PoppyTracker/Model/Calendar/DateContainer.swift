@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DateContainer : Identifiable {
+struct DateContainer : Identifiable, Hashable {
 
     let id = UUID()
     var isFilled : Bool

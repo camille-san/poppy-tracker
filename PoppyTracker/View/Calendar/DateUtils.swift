@@ -61,3 +61,29 @@ func fillUpMonthToStartOnMonday(monthDays dates : [DateContainer]) -> [DateConta
     newDatesArray.append(contentsOf: dates)
     return newDatesArray
 }
+
+func datesBetween(startDate: Date, endDate: Date) -> [Date] {
+    var dates: [Date] = []
+    var currentDate = startDate
+
+    // Ensure the start date is before the end date
+    if startDate > endDate {
+        return datesBetween(startDate: endDate, endDate: startDate)
+    }
+
+    if startDate == endDate {
+        dates.append(startDate)
+        return dates
+    }
+
+    while currentDate <= endDate {
+        dates.append(currentDate)
+        if let nextDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
+            currentDate = nextDate
+        } else {
+            break
+        }
+    }
+
+    return dates
+}

@@ -10,7 +10,7 @@ import Foundation
 @Observable
 class ModelData {
     
-    var selectedDates : [Date] = []
+    var selectedDates : Set<Date> = []
     var myText = "text by default"
 
 }

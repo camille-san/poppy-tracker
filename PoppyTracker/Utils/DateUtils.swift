@@ -66,7 +66,6 @@ func datesBetween(startDate: Date, endDate: Date) -> [Date] {
     var dates: [Date] = []
     var currentDate = startDate
 
-    // Ensure the start date is before the end date
     if startDate > endDate {
         return datesBetween(startDate: endDate, endDate: startDate)
     }

@@ -14,7 +14,7 @@ struct UserView: View {
 
     var body: some View {
         VStack {
-            Text("\(userStatistics.usualLength)")
+            Text("\(userStatistics.usualPeriodLength)")
             Text("\(modelData.selectedDates.count)")
         }
     }

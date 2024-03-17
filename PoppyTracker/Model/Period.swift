@@ -11,6 +11,12 @@ struct Period {
 
     var startDate : Date
     var endDate : Date
-    var dates : [Date]
+    var dates : [Date]?
+
+    init(startDate: Date, endDate: Date) {
+        self.startDate = startDate
+        self.endDate = endDate
+        dates = datesBetween(startDate: startDate, endDate: endDate)
+    }
 
 }

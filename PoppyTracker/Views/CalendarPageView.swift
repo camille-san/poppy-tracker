@@ -20,11 +20,13 @@ struct CalendarPageView: View {
     private let generator = UIImpactFeedbackGenerator(style: .medium)
     private let calendar = Calendar.current
     private let todayYear = Calendar.current.component(.year, from: Date())
-
-    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 7)
+    private var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 7)
 
     var body: some View {
         VStack (spacing: 32) {
+            Text("Calendar")
+                .font(.title)
+                .padding(.top, 24)
             HStack {
                 Picker(selection: $month, label: Text("Month picker")) {
                     ForEach(Month.allCases, id: \.monthIndex) { month in
@@ -33,7 +35,7 @@ struct CalendarPageView: View {
                 }
                 .pickerStyle(.wheel)
                 Picker(selection: $year, label: Text("Year picker")) {
-                    ForEach(Array(2020...2024), id: \.self) { year in
+                    ForEach(Array((todayYear-3)...(todayYear+2)), id: \.self) { year in
                         Text("\(String(year))").tag(year)
                     }
                 }
@@ -77,11 +79,7 @@ struct CalendarPageView: View {
                             }
                         }
                         .frame(width: size, height: size)
-                        .onTapGesture {
-                            if day.isFilled {
-                                onClickDate(date: day)
-                            }
-                        }
+                        .onTapGesture {onClickDate(date: day)}
                     }
                 }
             }
@@ -98,7 +96,7 @@ struct CalendarPageView: View {
         .onChange(of: year) {
             dayPositions = [:]
         }
-        .background(.pink)
+        .background(PinkGradientBackground())
         .gesture(DragGesture()
             .onChanged { value in
                 selectDatesBasedOnCGPoints(
@@ -115,16 +113,11 @@ struct CalendarPageView: View {
     }
 
     private func onClickDate(date : DateContainer) {
-        generator.prepare()
-
-        let unwrappedDate : Date = date.date!
-        if modelData.selectedDates.contains(unwrappedDate) {
-            modelData.selectedDates.remove(unwrappedDate)
-        } else {
-            modelData.selectedDates.insert(unwrappedDate)
+        if date.isFilled {
+            generator.prepare()
+            modelData.handleOneDate(date: date.date!)
+            generator.impactOccurred()
         }
-
-        generator.impactOccurred()
     }
 
     private func selectDatesBasedOnCGPoints(startPoint : CGPoint, endPoint: CGPoint) {
@@ -153,14 +146,9 @@ struct CalendarPageView: View {
     }
 
     private func selectDateRange() {
-        if modelData.selectedDates.isSuperset(of: tempSelectedDates) {
-            modelData.selectedDates.subtract(tempSelectedDates)
-        } else {
-            modelData.selectedDates.formUnion(tempSelectedDates)
-        }
+        modelData.handleSeveralDates(dates: tempSelectedDates)
         tempSelectedDates = []
     }
-
 }
 
 #Preview {

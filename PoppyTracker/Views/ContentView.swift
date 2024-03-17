@@ -40,5 +40,4 @@ struct ContentView: View {
 #Preview {
     return ContentView()
         .environment(ModelData())
-        .environment(UserStatistics())
 }

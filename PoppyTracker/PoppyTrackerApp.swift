@@ -11,13 +11,15 @@ import SwiftUI
 struct PoppyTrackerApp: App {
 
     @State private var modelData = ModelData()
-    @State private var userStatistics = UserStatistics()
+    
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.white
+    }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(modelData)
-                .environment(userStatistics)
         }
     }
 }

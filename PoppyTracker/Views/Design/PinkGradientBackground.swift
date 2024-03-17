@@ -9,7 +9,11 @@ import SwiftUI
 
 struct PinkGradientBackground: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        LinearGradient(colors: [
+            Color.red.opacity(0.1),
+            Color.red.opacity(0.3)
+        ], startPoint: .bottomTrailing, endPoint: .topLeading)
+        .ignoresSafeArea()
     }
 }
 

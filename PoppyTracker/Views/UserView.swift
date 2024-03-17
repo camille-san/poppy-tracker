@@ -9,19 +9,38 @@ import SwiftUI
 
 struct UserView: View {
 
-    @Environment(UserStatistics.self) var userStatistics
     @Environment(ModelData.self) var modelData
 
     var body: some View {
         VStack {
-            Text("\(userStatistics.usualPeriodLength)")
-            Text("\(modelData.selectedDates.count)")
+            Text("Statistics")
+                .font(.title)
+                .padding(.top, 24)
+            Group {
+                HStack {
+                    Text("Average cycle length")
+                        .bold()
+                    Spacer()
+                    Text("\(modelData.averageCycleLength)")
+                }
+                HStack {
+                    Text("Average period length")
+                        .bold()
+                    Spacer()
+                    Text("\(modelData.averagePeriodLength)")
+                }
+            }
+            .padding()
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            Spacer()
         }
+        .padding()
+        .background(PinkGradientBackground())
     }
 }
 
 #Preview {
     UserView()
-        .environment(UserStatistics())
         .environment(ModelData())
 }

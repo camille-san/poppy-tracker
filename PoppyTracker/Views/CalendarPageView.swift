@@ -8,43 +8,86 @@
 import SwiftUI
 
 struct CalendarPageView: View {
-
+    
     @Environment(ModelData.self) var modelData
-
+    
     @State private var month = Calendar.current.component(.month, from: Date())
     @State private var year = Calendar.current.component(.year, from: Date())
     @State private var dayPositions: [Date : CGRect] = [:]
     @State private var tempSelectedDates : [Date] = []
-
+    
     private let size : CGFloat = 45
     private let generator = UIImpactFeedbackGenerator(style: .medium)
     private let calendar = Calendar.current
     private let todayYear = Calendar.current.component(.year, from: Date())
     private var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 7)
-
+    
     var body: some View {
-        VStack (spacing: 32) {
+        VStack (spacing: 12) {
             Text("Calendar")
                 .font(.title)
-                .padding(.top, 24)
+                .padding(.vertical, 24)
             HStack {
-                Picker(selection: $month, label: Text("Month picker")) {
-                    ForEach(Month.allCases, id: \.monthIndex) { month in
-                        Text("\(month.monthIndex)").tag(month.monthIndex)
+                Button {
+                    if month == 1 {
+                        month = 12
+                        year -= 1
+                    } else {
+                        month -= 1
                     }
+                } label : {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 28))
+                        .foregroundStyle(.black)
+                        .padding()
+                        .background(.gray.opacity(0.1))
+                        .frame(width: size, height: size)
+                        .clipShape(Circle())
                 }
-                .pickerStyle(.wheel)
-                Picker(selection: $year, label: Text("Year picker")) {
-                    ForEach(Array((todayYear-3)...(todayYear+2)), id: \.self) { year in
-                        Text("\(String(year))").tag(year)
+                Spacer()
+                Group {
+                    Text("\(Month(monthIndex: month)!.monthName)")
+                    Text("\(String(year))")
+                }
+                .font(.system(size: 24))
+                .foregroundStyle(.pink)
+                Spacer()
+                Button {
+                    if month == 12 {
+                        month = 1
+                        year += 1
+                    } else {
+                        month += 1
                     }
+                } label : {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 28))
+                        .foregroundStyle(.black)
+                        .padding()
+                        .background(.gray.opacity(0.1))
+                        .frame(width: size, height: size)
+                        .clipShape(Circle())
                 }
-                .pickerStyle(.wheel)
             }
-            .frame(height: 100)
+            .padding()
+            //            HStack {
+            //                Picker(selection: $month, label: Text("Month picker")) {
+            //                    ForEach(Month.allCases, id: \.monthIndex) { month in
+            //                        Text("\(month.monthIndex)").tag(month.monthIndex)
+            //                    }
+            //                }
+            //                .pickerStyle(.wheel)
+            //                Picker(selection: $year, label: Text("Year picker")) {
+            //                    ForEach(Array((todayYear-3)...(todayYear+2)), id: \.self) { year in
+            //                        Text("\(String(year))").tag(year)
+            //                    }
+            //                }
+            //                .pickerStyle(.wheel)
+            //            }
+            //            .frame(height: 100)
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 15))
-
+            
             VStack (spacing: 32) {
                 LazyVGrid(columns: columns, spacing: 20) {
                     Group {
@@ -110,8 +153,17 @@ struct CalendarPageView: View {
                 selectDateRange()
             }
         )
+        //        .gesture(DragGesture(minimumDistance: 100, coordinateSpace: .global)
+        //            .onEnded { value in
+        //                if value.translation.width > 0 && abs(value.translation.height) < 100 {
+        //                    print("right") // This means the user swiped right.
+        //                } else if value.translation.width < 0 && abs(value.translation.height) < 100 {
+        //                    print("left") // This means the user swiped left.
+        //                }
+        //            }
+        //        )
     }
-
+    
     private func onClickDate(date : DateContainer) {
         if date.isFilled {
             generator.prepare()
@@ -119,12 +171,12 @@ struct CalendarPageView: View {
             generator.impactOccurred()
         }
     }
-
+    
     private func selectDatesBasedOnCGPoints(startPoint : CGPoint, endPoint: CGPoint) {
         generator.prepare()
         let newStartPoint = CGPoint(x: startPoint.x, y: startPoint.y + size)
         let newEndPoint = CGPoint(x: endPoint.x, y: endPoint.y + size)
-
+        
         var startDate : Date?
         var endDate : Date?
         for (date, cgRect) in dayPositions {
@@ -133,7 +185,7 @@ struct CalendarPageView: View {
             } else if cgRect.contains(newEndPoint) {
                 endDate = date
             }
-
+            
             if let unwrappedStartDate = startDate, let unwrappedEndDate = endDate {
                 let selectedDates = datesBetween(startDate: unwrappedStartDate, endDate: unwrappedEndDate)
                 if selectedDates.count > tempSelectedDates.count {
@@ -144,7 +196,7 @@ struct CalendarPageView: View {
             }
         }
     }
-
+    
     private func selectDateRange() {
         if !tempSelectedDates.isEmpty {
             modelData.handleSeveralDates(dates: tempSelectedDates)

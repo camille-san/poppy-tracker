@@ -14,13 +14,10 @@ struct CalendarPageView: View {
     @State private var month = 2
     @State private var year = 1989
     @State private var dayPositions: [Date : CGRect] = [:]
-
-    //    @State private var startDate : Date?
-    //    @State private var endDate : Date?
     @State private var tempSelectedDates : [Date] = []
 
-    private var size : CGFloat = 45
-    private var dateFormatter : DateFormatter = DateFormatter()
+    private let size : CGFloat = 45
+    private let generator = UIImpactFeedbackGenerator(style: .medium)
 
     let columns = [
         GridItem(.flexible()),
@@ -33,7 +30,6 @@ struct CalendarPageView: View {
     ]
 
     func onClickDate(date : DateContainer) {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.prepare()
 
         let unwrappedDate : Date = date.date!
@@ -47,7 +43,7 @@ struct CalendarPageView: View {
     }
 
     func selectDatesBasedOnCGPoints(startPoint : CGPoint, endPoint: CGPoint) {
-
+        generator.prepare()
         let newStartPoint = CGPoint(x: startPoint.x, y: startPoint.y + size)
         let newEndPoint = CGPoint(x: endPoint.x, y: endPoint.y + size)
 
@@ -62,6 +58,9 @@ struct CalendarPageView: View {
 
             if let unwrappedStartDate = startDate, let unwrappedEndDate = endDate {
                 let selectedDates = datesBetween(startDate: unwrappedStartDate, endDate: unwrappedEndDate)
+                if selectedDates.count > tempSelectedDates.count {
+                    generator.impactOccurred()
+                }
                 tempSelectedDates = selectedDates
                 break
             }
@@ -79,13 +78,12 @@ struct CalendarPageView: View {
 
     var body: some View {
         VStack {
-            Picker(selection: $month, label: Text("Picker")) {
+            Picker(selection: $month, label: Text("Month picker")) {
                 ForEach(Month.allCases, id: \.monthIndex) { month in
                     Text("\(month.monthIndex)").tag(month.monthIndex)
                 }
             }
             .pickerStyle(.segmented)
-            Text("Month: \(month)")
             LazyVGrid(columns: columns, spacing: 20) {
                 Text("L")
                 Text("M")

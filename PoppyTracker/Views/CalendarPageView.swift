@@ -146,8 +146,10 @@ struct CalendarPageView: View {
     }
 
     private func selectDateRange() {
-        modelData.handleSeveralDates(dates: tempSelectedDates)
-        tempSelectedDates = []
+        if !tempSelectedDates.isEmpty {
+            modelData.handleSeveralDates(dates: tempSelectedDates)
+            tempSelectedDates = []
+        }
     }
 }
 

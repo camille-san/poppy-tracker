@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    
+    @Environment(ModelData.self) var modelData
+    
     @State private var selection: Tab = .calendar
-
+    
     enum Tab {
         case calendar
         case user
     }
-
+    
     var body: some View {
         TabView(selection: $selection) {
             CalendarPageView()
@@ -32,6 +34,9 @@ struct ContentView: View {
                     }
                 }
                 .tag(Tab.user)
+        }
+        .onAppear {
+            modelData.setupMockData()
         }
         .preferredColorScheme(.light)
     }

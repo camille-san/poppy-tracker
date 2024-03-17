@@ -11,11 +11,10 @@ import Foundation
 class ModelData {
 
     var selectedDates : Set<Date> = []
-
     var averageCycleLength : Int = 28
-    var averagePeriodLength : Int = 5
+    var averagePeriodLength : Int = 7
 
-    var periods : [Period] = []
+    private var periods : [Period] = []
 
     func handleOneDate(date : Date) {
         if selectedDates.contains(date) {
@@ -36,34 +35,39 @@ class ModelData {
     }
 
     private func refreshStatistics() {
-        let calendar = Calendar.current
+        periods = []
 
-        var dates = [Date]()
-        dates.append(Date())
-        dates.append(calendar.date(byAdding: .day, value: 5, to: Date())!)
-        dates.append(calendar.date(byAdding: .day, value: 11, to: Date())!)
-        dates.append(calendar.date(byAdding: .day, value: 20, to: Date())!)
-        dates.append(calendar.date(byAdding: .day, value: 27, to: Date())!)
-        dates.append(calendar.date(byAdding: .day, value: 35, to: Date())!)
+        let sortedDates : [Date] = selectedDates.sorted(by: { $0 < $1 })
 
-        var endDates = [Date]()
-        endDates.append(Date())
-        endDates.append(calendar.date(byAdding: .day, value: 11, to: Date())!)
-        endDates.append(calendar.date(byAdding: .day, value: 20, to: Date())!)
-        endDates.append(calendar.date(byAdding: .day, value: 25, to: Date())!)
-        endDates.append(calendar.date(byAdding: .day, value: 32, to: Date())!)
-        endDates.append(calendar.date(byAdding: .day, value: 45, to: Date())!)
+        var subsets: [[Date]] = []
+        var currentSubset: [Date] = []
 
-        periods = [Period]()
-        for i in 0..<dates.count {
-            periods.append(Period(startDate: dates[i], endDate: endDates[i]))
+        for (index, date) in sortedDates.enumerated() {
+            if currentSubset.isEmpty {
+                currentSubset.append(date)
+            } else if index < sortedDates.count, areDatesConsecutive(firstDate: currentSubset.last!, secondDate: date) {
+                // is consecutive -> we add to current period
+                currentSubset.append(date)
+            } else {
+                // is not consecutive -> we create a new period
+                subsets.append(currentSubset)
+                currentSubset = [date]
+            }
         }
 
-        computeAverageCycleLength(periods: periods)
-        computeAveragePeriodLength(periods: periods)
+        if !currentSubset.isEmpty {
+            subsets.append(currentSubset)
+        }
+
+        for subset in subsets {
+            periods.append(Period(startDate: subset.first!, endDate: subset.last!))
+        }
+
+        computeAverageCycleLength()
+        computeAveragePeriodLength()
     }
 
-    private func computeAveragePeriodLength(periods : [Period]) {
+    private func computeAveragePeriodLength() {
         var intervals = [Int]()
 
         for i in 1..<periods.count {
@@ -72,12 +76,12 @@ class ModelData {
 
         let sum = intervals.reduce(0, +)
         let average = Double(sum) / Double(intervals.count)
-        averagePeriodLength = Int(ceil(average))
+        averagePeriodLength = Int(round(average))
 
         print("new average period length: \(averagePeriodLength)")
     }
 
-    private func computeAverageCycleLength(periods : [Period]) {
+    private func computeAverageCycleLength() {
         var intervals = [Int]()
 
         for i in 1..<periods.count {
@@ -92,9 +96,42 @@ class ModelData {
 
         let sum = intervals.reduce(0, +)
         let average = Double(sum) / Double(intervals.count)
-        averageCycleLength = Int(ceil(average))
+        averageCycleLength = Int(round(average))
 
         print("new average cycle length: \(averageCycleLength)")
+    }
+
+    func setupMockData() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        var date1 = dateFormatter.date(from: "30/10/2023")
+        var date2 = dateFormatter.date(from: "3/11/2023")
+        periods.append(Period(startDate: date1!, endDate: date2!))
+
+        date1 = dateFormatter.date(from: "25/11/2023")
+        date2 = dateFormatter.date(from: "29/11/2023")
+        periods.append(Period(startDate: date1!, endDate: date2!))
+
+        date1 = dateFormatter.date(from: "21/12/2023")
+        date2 = dateFormatter.date(from: "24/12/2023")
+        periods.append(Period(startDate: date1!, endDate: date2!))
+
+        date1 = dateFormatter.date(from: "18/01/2024")
+        date2 = dateFormatter.date(from: "22/01/2024")
+        periods.append(Period(startDate: date1!, endDate: date2!))
+
+        date1 = dateFormatter.date(from: "14/02/2024")
+        date2 = dateFormatter.date(from: "19/02/2024")
+        periods.append(Period(startDate: date1!, endDate: date2!))
+
+
+        for i in 0..<periods.count {
+            selectedDates.formUnion(periods[i].dates!)
+        }
+
+        refreshStatistics()
+
+        print("Data setup OK")
     }
 
 }

@@ -20,16 +20,15 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="324"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="NR3-b1-75a">
-                                        <rect key="frame" x="121.66666666666669" y="0.0" width="150" height="128"/>
+                                        <rect key="frame" x="132.66666666666666" y="0.0" width="127.99999999999997" height="128"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="2Gw-9V-aqz"/>
-                                            <constraint firstAttribute="width" constant="150" id="s5N-l8-zQL"/>
+                                            <constraint firstAttribute="width" secondItem="NR3-b1-75a" secondAttribute="height" multiplier="1:1" id="5mF-YT-5KR"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poppy Tracker" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
                                         <rect key="frame" x="77.333333333333329" y="176" width="238.66666666666669" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="2xQ-Au-lxx"/>
+                                            <constraint firstAttribute="height" constant="50" id="cuP-ml-cnR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

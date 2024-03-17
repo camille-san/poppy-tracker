@@ -86,3 +86,12 @@ func datesBetween(startDate: Date, endDate: Date) -> [Date] {
 
     return dates
 }
+
+func areDatesConsecutive(firstDate: Date, secondDate: Date) -> Bool {
+    if firstDate > secondDate {
+        return areDatesConsecutive(firstDate: secondDate, secondDate: firstDate)
+    }
+
+    let nextDay = calendar.date(byAdding: .day, value: 1, to: firstDate)
+    return calendar.isDate(nextDay!, inSameDayAs: secondDate)
+}

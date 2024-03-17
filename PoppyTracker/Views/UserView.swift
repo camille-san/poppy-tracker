@@ -15,6 +15,7 @@ struct UserView: View {
         VStack {
             Text("Statistics")
                 .font(.title)
+                .bold()
                 .padding(.top, 24)
             Group {
                 HStack {
